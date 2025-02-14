@@ -12,26 +12,26 @@ export const IceCreamController = {
       }
       res.status(200).json(all);
     } catch (error) {
-      res.status(500).json({ error: "Erro interno do servidor" });
+      res.status(500).json({ messge: "Erro interno do servidor",error });
     }
   },
 
   saveIceCream: async (req: Request, res: Response): Promise<void> => {
     try {
-      const { name, description, inStock } = req.body as {
+      const { name, price, inStock } = req.body as {
         name: string;
-        description: string;
-        inStock: string;
+        price: number;
+        inStock: number;
       };
 
-      if (!name || !description || !inStock) {
+      if (!name || !price|| !inStock) {
         res
           .status(400)
           .json({ error: "Todos os campos devem ser preenchidos" });
         return;
       }
 
-      await IceCreamModel.save({ name, description, inStock });
+      await IceCreamModel.save({ name,price, inStock });
 
       res.status(201).json({ message: "Sorvete salvo com sucesso!" });
     } catch (error) {
@@ -45,7 +45,7 @@ export const IceCreamController = {
   updateIceCream: async (req: Request, res: Response) => {
     try {
       const id = req.params.id;
-      const { quantity } = req.body;
+      const { name, price , quantity } = req.body;
 
       if (!id) {
         res.status(404).json("Not Found!");
@@ -54,7 +54,7 @@ export const IceCreamController = {
         res.status(400).json("Você deve passar uma quantidade!");
       }
 
-      await IceCreamModel.upadate(id, quantity);
+      await IceCreamModel.update(id, quantity, name, price);
     } catch (error) {
       res.status(500).json({
         error: "Erro ao atualizar o estoque",

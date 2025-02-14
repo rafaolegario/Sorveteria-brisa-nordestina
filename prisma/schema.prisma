@@ -10,7 +10,7 @@ datasource db {
 model iceCreams {
   id String @id @default(auto()) @map("_id") @db.ObjectId
   name String
-  description String
+  price Float
   inStock Int
 
   @@map("iceCreams")

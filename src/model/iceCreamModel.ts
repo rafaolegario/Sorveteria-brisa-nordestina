@@ -2,8 +2,8 @@ import prismaClient from "../prisma";
 
 interface iceCreamProps {
   name: string;
-  description: string;
-  inStock: string;
+  price: number;
+  inStock: number
 }
 
 export const IceCreamModel = {
@@ -12,27 +12,29 @@ export const IceCreamModel = {
     return all;
   },
 
-  save: async ({ name, description, inStock }: iceCreamProps) => {
-    const InStock = parseInt(inStock);
+  save: async ({ name, price, inStock }: iceCreamProps) => {
 
+    console.log(price)
     const iceCream = await prismaClient.iceCreams.create({
       data: {
         name,
-        description,
-        inStock: InStock,
+        price,
+        inStock,
       },
     });
     return iceCream;
   },
 
-  upadate: async (id: string, quantity: number) => {
-    const upadated = await prismaClient.iceCreams.update({
+  update: async (id: string, quantity: number, newName : string, price: number) => {
+    const updated = await prismaClient.iceCreams.update({
       where: { id: id },
       data: {
-        inStock: quantity,
+        name: newName,
+        price: price,
+        inStock: quantity
       },
     });
-    return upadated;
+    return updated;
   },
 
   delete: async (id: string) => {
