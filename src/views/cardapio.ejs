@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="/styles/style.css">
+
+    <title>Sorveteria - Brisa Nordestina</title>
+  </head>
+  <body>
+    <div class="logo">
+      <img
+        src="/assets\brisa_nordestina-removebg-preview.png"
+        alt=""
+        srcset=""
+      />
+    </div>
+
+    <div class="cardapio">
+      <div class="title">
+        <h2>CARDÁPIO</h2>
+      </div>
+      <div class="second-title">
+        <h3>SABORES</h3>
+
+        <div class="cart">
+          <span>5</span>
+          <i class="fa-solid fa-cart-shopping"></i>
+        </div>
+      </div>
+      <div class="products">
+        <% products.forEach(iceCream => { %>
+            <div class="product">
+                <div class="infos">
+                  <h4><%=iceCream.name %></h4>
+                  <div class="price-stock">
+                    <span>R$<%= iceCream.price %></span>
+                    <span>Em estoque: <%= iceCream.inStock %></span>
+                  </div>
+                </div>
+                <div class="addToCart">
+                  <button><i class="fa-solid fa-cart-plus"></i></button>
+                </div>
+              </div>
+          <% }) %>
+      </div>
+
+      <button class="finalizar">
+        Finalizar Compra <i class="fa-solid fa-arrow-right-long"></i>
+      </button>
+    </div>
+
+    <div class="payments-method">
+      <span>Aceitamos cartão | dinheiro | pix</span>
+    </div>
+
+    <div class="instagram">
+      <i class="fa-brands fa-instagram"></i>
+      <a href="https://www.instagram.com/brisa.nordestina/" target="_blank"
+        >@brisa.nordestina</a
+      >
+    </div>
+  </body>
+</html>

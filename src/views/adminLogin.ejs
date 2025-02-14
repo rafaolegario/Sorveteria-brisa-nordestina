@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styles/login.css" />
+    <title>Login screen</title>
+  </head>
+
+  <body>
+    <div class="container">
+      <form id="adminLoginForm" action="/auth/login" method="post">
+        <h1>Login Admin</h1>
+
+        <div class="input-container">
+          <input type="email" name="username" id="LoginEmail" placeholder="Email..." required/>
+          <img
+            width="30"
+            height="30"
+            src="https://img.icons8.com/ios/30/user--v1.png"
+            alt="user--v1"
+          />
+        </div>
+        <div class="input-container">
+          <input
+            name="password"
+            type="password"
+            id="LoginPassword"
+            placeholder="Senha..."
+            required
+            
+          />
+          <img
+            width="30"
+            height="30"
+            src="https://img.icons8.com/sf-regular-filled/30/000000/lock.png"
+            alt="lock"
+          />
+        </div>
+
+        <button type="submit" class="submitButton">Entrar</button>
+      </form>
+      <span id="infosLogin"></span>
+    </div>
+
+    <script src="../src/login.js" type="module"></script>
+  </body>
+</html>

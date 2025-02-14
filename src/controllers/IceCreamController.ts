@@ -2,26 +2,33 @@ import { Request, Response } from "express";
 import { IceCreamModel } from "../model/iceCreamModel";
 
 export const IceCreamController = {
-  getIceCreams: async (req: Request, res: Response): Promise<void> => {
-    try {
-      const all = await IceCreamModel.getAll();
 
-      if (all.length === 0) {
-        res.status(404).json({ message: "Not Found!" });
-        return;
-      }
-      res.status(200).json(all);
+  getById: async (req: Request, res: Response) => {
+    try {
+      const { id } = req.params
+      const products = await IceCreamModel.getID(id); 
+      return res.json(products);
     } catch (error) {
-      res.status(500).json({ messge: "Erro interno do servidor",error });
+    res.status(500).json({ message: "Erro ao buscar sorvetes", error });
+  }
+  },
+ 
+  getIceCreams: async (req: Request, res: Response) => {
+      try {
+        const products = await IceCreamModel.getAll(); 
+        return products;
+      } catch (error) {
+      res.status(500).json({ message: "Erro ao buscar sorvetes", error });
     }
   },
+  
 
   saveIceCream: async (req: Request, res: Response): Promise<void> => {
     try {
       const { name, price, inStock } = req.body as {
         name: string;
-        price: number;
-        inStock: number;
+        price: string;
+        inStock: string;
       };
 
       if (!name || !price|| !inStock) {
@@ -31,9 +38,13 @@ export const IceCreamController = {
         return;
       }
 
-      await IceCreamModel.save({ name,price, inStock });
+      const Price = parseFloat(price);
+      const InStock = parseInt(inStock);  
 
-      res.status(201).json({ message: "Sorvete salvo com sucesso!" });
+      await IceCreamModel.save({ name, Price, InStock });
+
+      res.redirect("/protected/admin");
+      
     } catch (error) {
       res.status(500).json({
         error: "Erro ao salvar o sorvete",
@@ -46,15 +57,10 @@ export const IceCreamController = {
     try {
       const id = req.params.id;
       const { name, price , quantity } = req.body;
+      const Price = parseFloat(price);
+      const Quantity = parseInt(quantity);
 
-      if (!id) {
-        res.status(404).json("Not Found!");
-      }
-      if (!quantity) {
-        res.status(400).json("Você deve passar uma quantidade!");
-      }
-
-      await IceCreamModel.update(id, quantity, name, price);
+      await IceCreamModel.update(id, Quantity, name, Price);
     } catch (error) {
       res.status(500).json({
         error: "Erro ao atualizar o estoque",

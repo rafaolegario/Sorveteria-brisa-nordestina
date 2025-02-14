@@ -9,8 +9,9 @@ export const LoginController = {
         const Admin = admin.find(adm => adm.username === username)
 
         if(!Admin || Admin.password !== password){
-             res.status(401).json({message:"Unauthorized"})
-             return
+            console.log('redirected login')
+            return res.redirect('/auth/login')
+            
         }
 
         const SECRET_KEY = process.env.SECRET_KEY
@@ -18,7 +19,12 @@ export const LoginController = {
             expiresIn : '72h'
         })
 
+        res.cookie("token", token, {
+            httpOnly: true, 
+            secure: process.env.NODE_ENV === "production", 
+            maxAge: 3600000,
+          });
+
         res.redirect('/protected/admin')
-        res.json({ token })
     }
 }

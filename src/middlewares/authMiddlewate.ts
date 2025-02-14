@@ -1,30 +1,17 @@
 import { Request, Response, NextFunction } from "express";
 import jwt, { JwtPayload } from "jsonwebtoken";
-import { admin } from "../model/adminUser";
 
-export const authMiddleware = (req: Request, res: Response, next: NextFunction): void =>{
-    const authHeader = req.headers.authorization
-    if(!authHeader){
-        res.status(401).json({message:"Unauthorized"})
-        res.redirect('/auth/login')
-        return
-    }
+export const authMiddleware = (req: Request, res: Response, next: NextFunction): void => {
+  const token = req.cookies.token; 
 
-    const token = authHeader.split(' ')[1]
+  if (!token) {
+    return res.redirect("/auth/login");
+  }
 
-    try {
-        const decodedToken = jwt.verify(token, process.env.SECRET_KEY! ) as JwtPayload
-        const Admin = admin.find(adm => adm.username == decodedToken.username )
+  try {
 
-        if(!Admin){  
-            res.status(401).json({message:'Invalid Token'})
-            res.redirect('/auth/login')
-            return
-        }
-        
-    } catch (error) {
-        res.status(401).json({message:'invalid token'})
-        res.redirect('/auth/login')
-    }
-    next()
-}
+    next();
+  } catch (error) {
+    return res.redirect("/auth/login");
+  }
+};
