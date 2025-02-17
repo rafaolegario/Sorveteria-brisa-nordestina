@@ -60,6 +60,8 @@ export const IceCreamController = {
       const Price = parseFloat(price);
       const Quantity = parseInt(inStock);
       await IceCreamModel.update(id, Quantity, name, Price);
+      res.status(201).send();
+      
     } catch (error) {
       res.status(500).json({
         error: "Erro ao atualizar o estoque",

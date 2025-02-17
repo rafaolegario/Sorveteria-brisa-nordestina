@@ -9,7 +9,6 @@ export const LoginController = {
         const Admin = admin.find(adm => adm.username === username)
 
         if(!Admin || Admin.password !== password){
-            console.log('redirected login')
             return res.redirect('/auth/login')
             
         }

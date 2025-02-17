@@ -33,8 +33,6 @@ document.addEventListener("click", async (event) => {
             credentials: "include",
         }).then((res) => res.json());
 
-        console.log(response);
-
         const iceCreamName = document.querySelector("#iceCreamNameUp");
         const iceCreamPrice = document.querySelector("#iceCreamPriceUp");
         const iceCreamInStock = document.querySelector("#iceCreamStockUp");
@@ -68,12 +66,9 @@ document.querySelector("#update-form").addEventListener("submit", async (event) 
             }),
         });
 
-
-        
-        if (response.redirected) {
-            window.location.href = response.url;
+        if (response.ok) {
+            window.location.reload();
+        } else {
+            console.error("Erro ao atualizar o sorvete");
         }
-        document.querySelector("#create-and-update-dialog").close();
-
-    
 });

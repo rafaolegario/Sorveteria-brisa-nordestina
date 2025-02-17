@@ -24,26 +24,26 @@
      <div class="productsCart">
        <h2>Adicionados ao carrinho</h2>
        <div class="cartProducts">
-         <div class="productCart">
-           <h3>Nome do produto</h3>
-           <span>R$40</span>
-           <span>Quantidade: 5</span>
-           <button class="deleteBtn">
-            <i class="fa-solid fa-trash"></i>
-            </button>
-         </div>
+        </div>
          <div class="final">
-            <label for="metodoEntrega">Forma de entrega:</label><br>
+          <div class="Entrega">
+            <label for="metodoEntrega">Entrega:</label><br>
             <select name="metodoEntrega" id="entrega">
               <option value="Retirar">Retirada no Local</option>
               <option value="Entrega">Entrega</option>
             </select>
-            <span>Total: R$200</span>
+          </div>
+          <div class="Entrega">
+            <label for="metodopagamento">Pagamento:</label><br>
+            <select name="metodopagamento" id="pagamento">
+              <option value="pix">Pix</option>
+              <option value="dinheiro">Dinheiro</option>
+              <option value="cartao">Cartão</option>
+            </select>
+          </div>
+            <span class="total">Total: R$200</span>
             <button class="finishBtn">Proximo</button>
          </div>
-
-       </div>
-
      </div>
   </dialog>
 
@@ -55,7 +55,7 @@
         <h3>SABORES</h3>
 
         <div class="cart">
-          <span>0</span>
+          <span class="cartSpan">0</span>
           <i class="fa-solid fa-cart-shopping"></i>
         </div>
       </div>
@@ -63,21 +63,21 @@
         <% products.forEach(iceCream => { %>
             <div class="product" >
                 <div class="infos">
-                  <h4 id="<%= iceCream.id %>-name"><%=iceCream.name %></h4>
+                  <h4 id="I<%= iceCream.id %>-name"><%=iceCream.name %></h4>
                   <div class="price-stock">
-                    <span id="<%= iceCream.id %>-price">R$<%= iceCream.price %></span>
-                    <span id="<%= iceCream.id %>-stock">Em estoque: <%= iceCream.inStock %></span>
+                    <span id="I<%= iceCream.id %>-price">R$<%= iceCream.price %></span>
+                    <span id="I<%= iceCream.id %>-stock">Em estoque: <%= iceCream.inStock %></span>
                   </div>
                 </div>
                 <div class="addToCart">
-                  <button class="cartBtn" id="<%= iceCream.id %>"><i class="fa-solid fa-cart-plus"></i></button>
+                  <button class="cartBtn" data-id="<%= iceCream.id %>"><i class="fa-solid fa-cart-plus"></i></button>
                 </div>
               </div>
           <% }) %>
       </div>
 
       <button class="finalizar">
-        Finalizar Compra <i class="fa-solid fa-arrow-right-long"></i>
+        Ver carrinho <i class="fa-solid fa-arrow-right-long"></i>
       </button>
     </div>
 

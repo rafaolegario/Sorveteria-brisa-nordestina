@@ -61,15 +61,15 @@ img{
 
 .cart span{
     position: absolute;
-    font-size: 17px;
-    top: -2px;
-    right: 12px;
+    font-size: 16px;
+    top: 2px;
+    right: 10px;
     font-weight: 600;
     color: var(--cor-branco);
 }
 
 .cart i{
-    font-size: 35px;
+    font-size: 45px;
 }
 
 .cart:hover{
@@ -207,12 +207,83 @@ img{
     transform: translate(-50%, -50%);
     z-index: 1000; 
     padding: 20px;
-    background-color: var(--cor-bege-claro);  
+    background-color: var(--cor-branco);  
     border-radius: 10px;  
 }
 
 #finishCart::backdrop{
     background-color: #00000074;
+}
+
+.productsCart{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 15px;
+    
+    border-bottom: 1px solid var(--cor-laranja-escuro);
+}
+.productsCart h2{
+    text-align: center;
+}
+
+.cartProducts{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
+    gap: 10px;
+}
+
+.productCart{
+    display: flex;
+    align-items: center; 
+    justify-content: space-around;
+    background-color: #00000027;
+    padding: 9px;
+    border-bottom: 1px solid black;
+    gap: 10px;
+}
+
+.removeBtn button{
+    background-color: #ff0000;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: var(--cor-branco);
+
+}
+
+.removeBtn button i {
+    font-size: 20px;
+}
+
+.final{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 20px;
+}
+
+.final span{
+    font-weight: 600;
+}
+
+.Entrega select{
+    font-size: 18px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.final button{
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: green;
+   
+    color: var(--cor-branco);
+    font-size: 18px;
+    border-radius: 10px;
 }
 
 @media (min-width: 1200px) {
@@ -239,11 +310,16 @@ img{
         height: 50px;
     }
 
-    
     #finishCart {
         width: 40%;
         padding: 20px;
         border-radius: 10px;  
         position: relative; 
+    }
+
+    .cartProducts{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        padding: 10px;
     }
 }
