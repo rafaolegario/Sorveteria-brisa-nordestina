@@ -5,9 +5,13 @@ import { authRouter } from './routes/auth';
 import dotenv from "dotenv";
 import path = require('node:path');
 import cookieParser from "cookie-parser";
+const cors = require('cors');
+
+
 
 dotenv.config();
 const app = express()
+app.use(cors());
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, "../public")))
 app.set('view engine', 'ejs')

@@ -22,7 +22,7 @@ export const IceCreamModel = {
 
 
   save: async ({ name, Price, InStock }: iceCreamProps) => {
-
+    
     const iceCream = await prismaClient.iceCreams.create({
       data: {
         name,
@@ -34,6 +34,7 @@ export const IceCreamModel = {
   },
 
   update: async (id: string, quantity: number, newName : string, price: number) => {
+    console.log("Valores recebidos no update:", { id, quantity, newName, price });
     const updated = await prismaClient.iceCreams.update({
       where: { id: id },
       data: {

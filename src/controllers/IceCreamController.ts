@@ -56,10 +56,9 @@ export const IceCreamController = {
   updateIceCream: async (req: Request, res: Response) => {
     try {
       const id = req.params.id;
-      const { name, price , quantity } = req.body;
+      const { name, price , inStock } = req.body;
       const Price = parseFloat(price);
-      const Quantity = parseInt(quantity);
-
+      const Quantity = parseInt(inStock);
       await IceCreamModel.update(id, Quantity, name, Price);
     } catch (error) {
       res.status(500).json({

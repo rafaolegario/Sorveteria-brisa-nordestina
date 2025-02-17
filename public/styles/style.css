@@ -199,6 +199,21 @@ img{
     text-decoration: none;
 }
 
+#finishCart {
+    width: 95%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000; 
+    padding: 20px;
+    background-color: var(--cor-bege-claro);  
+    border-radius: 10px;  
+}
+
+#finishCart::backdrop{
+    background-color: #00000074;
+}
 
 @media (min-width: 1200px) {
     body{
@@ -222,5 +237,13 @@ img{
 
     .finalizar{
         height: 50px;
+    }
+
+    
+    #finishCart {
+        width: 40%;
+        padding: 20px;
+        border-radius: 10px;  
+        position: relative; 
     }
 }
