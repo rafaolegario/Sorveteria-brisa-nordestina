@@ -11,6 +11,7 @@ const cors = require('cors');
 
 dotenv.config();
 const app = express()
+app.engine("ejs", require("ejs").__express);
 app.use(cors());
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, "../public")))
