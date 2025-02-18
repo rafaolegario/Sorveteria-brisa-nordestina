@@ -153,10 +153,27 @@
         </div>
       </div>
       
+       
+      <button id="logoutBtn" class="add-iceBtn">
+        Sair e voltar para a página inicial
+      </button>
+
 
     <script src="../src/open-modal.js"></script>
     <script src="../src/app.js" type="module"></script>
     <script src="../src/categoryAdmin.js"></script>
+
+    <script>
+
+      const logoutBtn = document.getElementById('logoutBtn');
+      logoutBtn.addEventListener('click', logout);
+
+      function logout() {
+        window.location.href = '/Brisanordestina/';
+        document.cookie = 'token=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/';
+        
+      }
+    </script>
     
   </body>
 </html>
