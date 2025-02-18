@@ -1,4 +1,6 @@
-document.getElementById("adminLoginForm").addEventListener("submit", async (event) => {
+document
+  .getElementById("adminLoginForm")
+  .addEventListener("submit", async (event) => {
     event.preventDefault();
 
     const formData = new FormData(event.target);
@@ -7,12 +9,13 @@ document.getElementById("adminLoginForm").addEventListener("submit", async (even
     const response = await fetch("/auth/login", {
       method: "POST",
       body,
-      credentials: "include" 
+      credentials: "include",
     });
 
     if (response.redirected) {
       window.location.href = response.url;
     } else {
-      document.getElementById("infosLogin").textContent = "Credenciais inválidas";
+      document.getElementById("infosLogin").textContent =
+        "Credenciais inválidas";
     }
-});
+  });

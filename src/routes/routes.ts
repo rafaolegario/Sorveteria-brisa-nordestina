@@ -1,14 +1,12 @@
-import express from 'express'
-import { IceCreamController } from '../controllers/IceCreamController'
+import express from "express";
+import { IceCreamController } from "../controllers/IceCreamController";
 
+const router = express.Router();
 
-const router = express.Router()
+router.get("/", async (req, res) => {
+  const products = await IceCreamController.getIceCreams(req, res);
 
-router.get("/", async (req, res) =>{
-    
-    const products = await IceCreamController.getIceCreams(req, res)
-    return res.render('cardapio',{products})
-})
+  return res.render("cardapio", { products });
+});
 
-
-export { router }
+export { router };
