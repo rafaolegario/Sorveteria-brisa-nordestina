@@ -18,11 +18,11 @@ const IceCreamController_1 = require("../controllers/IceCreamController");
 const authMiddlewate_1 = require("../middlewares/authMiddlewate");
 const protectedRouter = express_1.default.Router();
 exports.protectedRouter = protectedRouter;
-protectedRouter.get('/admin', authMiddlewate_1.authMiddleware, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+protectedRouter.get("/admin", authMiddlewate_1.authMiddleware, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const products = yield IceCreamController_1.IceCreamController.getIceCreams(req, res);
-    return res.render('admin', { products });
+    return res.render("admin", { products });
 }));
-protectedRouter.get('/admin/:id', authMiddlewate_1.authMiddleware, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+protectedRouter.get("/admin/:id", authMiddlewate_1.authMiddleware, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     yield IceCreamController_1.IceCreamController.getById(req, res);
 }));
 protectedRouter.post("/admin/save", authMiddlewate_1.authMiddleware, IceCreamController_1.IceCreamController.saveIceCream);

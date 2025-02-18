@@ -33,16 +33,16 @@ exports.IceCreamController = {
     }),
     saveIceCream: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         try {
-            const { name, price, inStock } = req.body;
+            const { name, price, inStock, propertie, size } = req.body;
             if (!name || !price || !inStock) {
                 res
                     .status(400)
                     .json({ error: "Todos os campos devem ser preenchidos" });
                 return;
             }
-            const Price = parseFloat(price);
+            const Price = parseFloat(price.replace(",", "."));
             const InStock = parseInt(inStock);
-            yield iceCreamModel_1.IceCreamModel.save({ name, Price, InStock });
+            yield iceCreamModel_1.IceCreamModel.save({ name, Price, InStock, propertie, size });
             res.redirect("/protected/admin");
         }
         catch (error) {
@@ -56,7 +56,7 @@ exports.IceCreamController = {
         try {
             const id = req.params.id;
             const { name, price, inStock } = req.body;
-            const Price = parseFloat(price);
+            const Price = parseFloat(price.replace(",", "."));
             const Quantity = parseInt(inStock);
             yield iceCreamModel_1.IceCreamModel.update(id, Quantity, name, Price);
             res.status(201).send();

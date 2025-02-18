@@ -37,6 +37,14 @@
           placeholder="140"
           required
         />
+        <select name="propertie" class="options">
+          <option value="traditional">Tradicional</option>
+          <option value="premium">Premium</option>
+        </select>
+        <select name="size" class="options">
+          <option value="1L">1 Litro</option>
+          <option value="1,5L">1,5 Litros</option>
+        </select>
         <div class="modalBtns">
           <button type="button" class="closeBtn">Fechar</button>
           <button type="submit" class="createBtn">Criar</button>
@@ -65,6 +73,7 @@
           id="iceCreamStockUp"
           placeholder="140"
         />
+      
         <div class="modalBtns">
           <button type="button" class="closeBtn">Fechar</button>
           <button type="submit" class="updatedBtn">Atualizar</button>
@@ -80,30 +89,74 @@
         <button class="add-iceBtn">Adicionar sorvete</button>
       </div>
 
-      <div class="products">
-        <% products.forEach(iceCream => { %>
-        <div class="product">
-          <div class="infos">
-            <h4><%= iceCream.name %></h4>
-            <div class="price-stock">
-              <span>R$ <%= iceCream.price %></span>
-              <span>Em estoque: <%= iceCream.inStock %></span>
-            </div>
-          </div>
-          <div class="up-delete">
-            <button class="updateBtn" data-id="<%=iceCream.id%>">
-              <i class="fa-solid fa-pen"></i>
-            </button>
-            <button class="deleteBtn" data-id="<%=iceCream.id%>">
-              <i class="fa-solid fa-trash"></i>
-            </button>
-          </div>
-        </div>
-        <% }) %>
+      <div class="tabs">
+        <button class="tab-btn active" data-category="tradicional">🍦 Tradicional</button>
+        <button class="tab-btn" data-category="premium">🍨 Premium</button>
       </div>
-    </div>
+      
+      <!-- Filtros de tamanho -->
+      <div class="filter">
+        <button class="filter-btn active" data-size="1L">1 Litro</button>
+        <button class="filter-btn" data-size="1,5L">1,5 Litros</button>
+      </div>
+      
+      <!-- Conteúdo das categorias -->
+      <div class="products-container">
+        <!-- Categoria Tradicional -->
+        <div class="products category active" id="tradicional">
+          <% products.forEach(iceCream => { %>
+            <% if (iceCream.propertie === "traditional") { %>
+              <div class="product" data-size="<%= iceCream.size %>" data-category="tradicional">
+                <div class="infos">
+                  <h4><%= iceCream.name %></h4>
+                  <div class="price-stock">
+                    <span>R$ <%= iceCream.price.toFixed(2) %></span>
+                    <span>Em estoque: <%= iceCream.inStock %></span>
+                  </div>
+                </div>
+                <div class="up-delete">
+                  <button class="updateBtn" data-id="<%= iceCream.id %>">
+                    <i class="fa-solid fa-pen"></i>
+                  </button>
+                  <button class="deleteBtn" data-id="<%= iceCream.id %>">
+                    <i class="fa-solid fa-trash"></i>
+                  </button>
+                </div>
+              </div>
+            <% } %>
+          <% }) %>
+        </div>
+      
+        <!-- Categoria Premium -->
+        <div class="products category" id="premium">
+          <% products.forEach(iceCream => { %>
+            <% if (iceCream.propertie === "premium") { %>
+              <div class="product" data-size="<%= iceCream.size %>" data-category="premium">
+                <div class="infos">
+                  <h4><%= iceCream.name %></h4>
+                  <div class="price-stock">
+                    <span>R$ <%= iceCream.price.toFixed(2) %></span>
+                    <span>Em estoque: <%= iceCream.inStock %></span>
+                  </div>
+                </div>
+                <div class="up-delete">
+                  <button class="updateBtn" data-id="<%= iceCream.id %>">
+                    <i class="fa-solid fa-pen"></i>
+                  </button>
+                  <button class="deleteBtn" data-id="<%= iceCream.id %>">
+                    <i class="fa-solid fa-trash"></i>
+                  </button>
+                </div>
+              </div>
+            <% } %>
+          <% }) %>
+        </div>
+      </div>
+      
 
     <script src="../src/open-modal.js"></script>
     <script src="../src/app.js" type="module"></script>
+    <script src="../src/categoryAdmin.js"></script>
+    
   </body>
 </html>

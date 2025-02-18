@@ -25,24 +25,31 @@ exports.IceCreamModel = {
         });
         return iceCream;
     }),
-    save: (_a) => __awaiter(void 0, [_a], void 0, function* ({ name, Price, InStock }) {
+    save: (_a) => __awaiter(void 0, [_a], void 0, function* ({ name, Price, InStock, propertie, size }) {
         const iceCream = yield prisma_1.default.iceCreams.create({
             data: {
                 name,
                 price: Price,
                 inStock: InStock,
+                propertie,
+                size
             },
         });
         return iceCream;
     }),
     update: (id, quantity, newName, price) => __awaiter(void 0, void 0, void 0, function* () {
-        console.log("Valores recebidos no update:", { id, quantity, newName, price });
+        console.log("Valores recebidos no update:", {
+            id,
+            quantity,
+            newName,
+            price,
+        });
         const updated = yield prisma_1.default.iceCreams.update({
             where: { id: id },
             data: {
                 name: newName,
                 price: price,
-                inStock: quantity
+                inStock: quantity,
             },
         });
         return updated;
