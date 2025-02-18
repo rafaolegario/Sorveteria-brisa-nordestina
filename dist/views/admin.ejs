@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="/styles/admin.css" />
+    <title>Sorveteria - Brisa Nordestina</title>
+  </head>
+  <body>
+    <dialog id="create-and-update-dialog">
+      <form id="create-form" action="/protected/admin/save" method="post">
+        <label for="name">Nome do sorvete:</label>
+        <input
+          type="text"
+          name="name"
+          id="iceCreamName"
+          placeholder="Chocolate.."
+          required
+        />
+        <label for="price">Preço:</label>
+        <input
+          type="text"
+          name="price"
+          id="iceCreamPrice"
+          placeholder="R$ 10"
+          required
+        />
+        <label for="inStock">Quantidade em estoque:</label>
+        <input
+          type="number"
+          name="inStock"
+          id="iceCreamStock"
+          placeholder="140"
+          required
+        />
+        <div class="modalBtns">
+          <button type="button" class="closeBtn">Fechar</button>
+          <button type="submit" class="createBtn">Criar</button>
+        </div>
+      </form>
+
+      <form id="update-form">
+        <label for="name">Nome do sorvete:</label>
+        <input
+          type="text"
+          name="name"
+          id="iceCreamNameUp"
+          placeholder="Chocolate.."
+        />
+        <label for="price">Preço:</label>
+        <input
+          type="text"
+          name="price"
+          id="iceCreamPriceUp"
+          placeholder="R$ 10"
+        />
+        <label for="inStock">Quantidade em estoque:</label>
+        <input
+          type="number"
+          name="inStock"
+          id="iceCreamStockUp"
+          placeholder="140"
+        />
+        <div class="modalBtns">
+          <button type="button" class="closeBtn">Fechar</button>
+          <button type="submit" class="updatedBtn">Atualizar</button>
+        </div>
+      </form>
+    </dialog>
+
+    <div class="cardapio">
+      <div class="title">
+        <h2>Área do adminstrador</h2>
+      </div>
+      <div class="second-title">
+        <button class="add-iceBtn">Adicionar sorvete</button>
+      </div>
+
+      <div class="products">
+        <% products.forEach(iceCream => { %>
+        <div class="product">
+          <div class="infos">
+            <h4><%= iceCream.name %></h4>
+            <div class="price-stock">
+              <span>R$ <%= iceCream.price %></span>
+              <span>Em estoque: <%= iceCream.inStock %></span>
+            </div>
+          </div>
+          <div class="up-delete">
+            <button class="updateBtn" data-id="<%=iceCream.id%>">
+              <i class="fa-solid fa-pen"></i>
+            </button>
+            <button class="deleteBtn" data-id="<%=iceCream.id%>">
+              <i class="fa-solid fa-trash"></i>
+            </button>
+          </div>
+        </div>
+        <% }) %>
+      </div>
+    </div>
+
+    <script src="../src/open-modal.js"></script>
+    <script src="../src/app.js" type="module"></script>
+  </body>
+</html>

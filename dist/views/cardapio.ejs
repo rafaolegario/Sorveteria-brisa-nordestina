@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+  <link rel="stylesheet" href="/styles/style.css">
+
+  <title>Sorveteria - Brisa Nordestina</title>
+</head>
+
+<body>
+  <div class="logo">
+    <img src="/assets\brisa_nordestina-removebg-preview.png" alt="" srcset="" />
+  </div>
+
+  <dialog id="finishCart">
+    <div class="productsCart">
+      <button class="close"><i class="fa-solid fa-x"></i></button>
+      <h2>Adicionados ao carrinho</h2>
+      <div class="cartProducts">
+      </div>
+      <div class="final">
+        <div class="Entrega">
+          <label for="metodopagamento">Metodo de Pagamento:</label>
+          <select name="metodopagamento" id="pagamento">
+            <option value="pix">Pix</option>
+            <option value="dinheiro">Dinheiro</option>
+            <option value="cartao">Cartão</option>
+          </select>
+        </div>
+        <span class="total">Total: R$200</span>
+        <button class="finishBtn">Confirmar</button>
+      </div>
+    </div>
+
+    <div class="delivery">
+      <button class="close"><i class="fa-solid fa-x"></i></button>
+      <h2>Estamos quase lá...</h2>
+      <label for="endereco">Endereço:</label>
+      <input type="text" name="endereco" id="endereco" placeholder="Digite seu endereço" required>
+      <div class="cepAndNum">
+        <label for="cep">Cep:</label>
+        <input type="text" name="cep" id="cep" placeholder="Digite seu CEP" required maxlength="8" pattern="\d{8}">
+        <label for="numero">Numero:</label>
+        <input type="number" name="numero" id="numero" placeholder="Digite o numero" required>
+      </div>
+      <label for="complemento">Complemento:</label>
+      <input type="text" name="complemento" id="complemento" placeholder="Digite o complemento" >
+      <div class="final">
+        <span class="total">Total: R$200</span>
+        <button class="finishBtn payment">Finalizar</button>
+      </div>
+     
+      </div>
+      </div>
+    </div>
+   
+  </dialog>
+
+  <div class="cardapio">
+    <div class="title">
+      <h2>CARDÁPIO</h2>
+    </div>
+    <div class="second-title">
+      <h3>SABORES</h3>
+
+      <div class="cart">
+        <span class="cartSpan">0</span>
+        <i class="fa-solid fa-cart-shopping"></i>
+      </div>
+    </div>
+    <div class="products">
+      <% products.forEach(iceCream=> { %>
+        <div class="product">
+          <div class="infos">
+            <h4 id="I<%= iceCream.id %>-name">
+              <%=iceCream.name %>
+            </h4>
+            <div class="price-stock">
+              <span id="I<%= iceCream.id %>-price">R$<%= iceCream.price %></span>
+              <span id="I<%= iceCream.id %>-stock">Em estoque: <%= iceCream.inStock %></span>
+            </div>
+          </div>
+          <div class="addToCart">
+            <button class="cartBtn" data-id="<%= iceCream.id %>"><i class="fa-solid fa-cart-plus"></i></button>
+          </div>
+        </div>
+        <% }) %>
+    </div>
+
+    <button class="finalizar">
+      Ver carrinho <i class="fa-solid fa-arrow-right-long"></i>
+    </button>
+  </div>
+
+  <div class="payments-method">
+    <span>Aceitamos cartão | dinheiro | pix</span>
+  </div>
+
+  <div class="instagram">
+    <i class="fa-brands fa-instagram"></i>
+    <a href="https://www.instagram.com/brisa.nordestina/" target="_blank">@brisa.nordestina</a>
+  </div>
+  <script src="/src/cartpayment.js"></script>
+</body>
+
+</html>
