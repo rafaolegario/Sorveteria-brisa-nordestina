@@ -12,6 +12,8 @@ model iceCreams {
   name String
   price Float
   inStock Int
+  propertie String
+  size String
 
   @@map("iceCreams")
 }

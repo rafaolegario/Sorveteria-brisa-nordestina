@@ -23,10 +23,12 @@ export const IceCreamController = {
 
   saveIceCream: async (req: Request, res: Response): Promise<void> => {
     try {
-      const { name, price, inStock } = req.body as {
+      const { name, price, inStock,propertie, size } = req.body as {
         name: string;
         price: string;
         inStock: string;
+        propertie: string;
+        size:string;
       };
 
       if (!name || !price || !inStock) {
@@ -39,7 +41,7 @@ export const IceCreamController = {
       const Price = parseFloat(price.replace(",", "."));
       const InStock = parseInt(inStock);
 
-      await IceCreamModel.save({ name, Price, InStock });
+      await IceCreamModel.save({ name, Price, InStock, propertie, size });
 
       res.redirect("/protected/admin");
     } catch (error) {
@@ -54,7 +56,7 @@ export const IceCreamController = {
     try {
       const id = req.params.id;
       const { name, price, inStock } = req.body;
-      const Price = parseFloat(price);
+      const Price = parseFloat(price.replace(",", "."));
       const Quantity = parseInt(inStock);
       await IceCreamModel.update(id, Quantity, name, Price);
       res.status(201).send();

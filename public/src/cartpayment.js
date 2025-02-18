@@ -19,8 +19,6 @@ cartBtn.forEach((btn) => {
     const price = document.querySelector(`#I${id}-price`).innerText;
     const stock = document.querySelector(`#I${id}-stock`).innerText;
 
-    console.log(stock);
-
     const priceConvert = parseFloat(price.replace("R$", "").replace(",", "."));
     const stockConvert = parseInt(stock.replace("Em estoque:", "").trim());
 
@@ -126,6 +124,8 @@ buyBtn.addEventListener("click", () => {
     return;
   }
 
+  const name = document.querySelector("#Nome").value;
+  const phoneUser = document.querySelector("#telefone").value;
   const addressInput = document.querySelector("#endereco").value;
   const cepInput = document.querySelector("#cep").value;
   const numberInput = document.querySelector("#numero").value;
@@ -138,6 +138,8 @@ buyBtn.addEventListener("click", () => {
   }
 
   const informations = `
+👤 *Nome:* ${name}
+📱 *Telefone:* ${phoneUser}
 🏠 *Endereço de Entrega:*
 📍 Endereço: ${addressInput}
 📮 CEP: ${cepInput}

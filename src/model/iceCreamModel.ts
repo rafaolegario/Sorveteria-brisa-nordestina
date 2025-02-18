@@ -1,10 +1,12 @@
-import { get } from "http";
+
 import prismaClient from "../prisma";
 
 interface iceCreamProps {
   name: string;
   Price: number;
   InStock: number;
+  propertie: string;
+  size: string;
 }
 
 export const IceCreamModel = {
@@ -20,12 +22,14 @@ export const IceCreamModel = {
     return iceCream;
   },
 
-  save: async ({ name, Price, InStock }: iceCreamProps) => {
+  save: async ({ name, Price, InStock, propertie, size }: iceCreamProps) => {
     const iceCream = await prismaClient.iceCreams.create({
       data: {
         name,
         price: Price,
         inStock: InStock,
+        propertie,
+        size
       },
     });
     return iceCream;

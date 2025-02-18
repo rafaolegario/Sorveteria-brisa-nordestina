@@ -8,7 +8,7 @@
 }
 
 body {
-  background-image: url("../assets/fundo-da-brisa.jpg");
+  background-image: url("../assets/fundo-da-brisa-desktop.jpg");
   background-size: cover;
   background-position: center;
   min-height: 100vh;
@@ -65,21 +65,7 @@ body {
   margin-top: 100px;
 }
 
-.products {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
-  gap: 20px;
-  margin-top: 10px;
-}
 
-.product {
-  background-color: var(--cor-bege);
-  display: flex;
-  justify-content: space-around;
-  padding: 10px;
-  border-radius: 5px;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
-}
 
 .infos h4 {
   font-size: 20px;
@@ -182,13 +168,90 @@ body {
   font-weight: 600;
 }
 
+.options{
+  background-color: #0000001f;
+  text-align: center;
+  font-size: 18px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+.tabs {
+  display: flex;
+  gap: 10px;
+}
+
+.tab-btn {
+  background-color: var(--cor-laranja-claro);
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.tab-btn.active {
+  background-color: #965e08;
+  border: 2px solid #7aef1a;
+}
+
+.filter {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+.filter-btn {
+  background-color: #8e8e8e;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.filter-btn.active {
+  background-color: #5a5a5a;
+}
+
+.products-container {
+  margin-top: 20px;
+}
+
+.category {
+  display: none; 
+}
+
+.category.active {
+  display: grid;
+}
+
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
+  gap: 20px;
+  margin-top: 10px;
+}
+
+.product {
+  background-color: var(--cor-bege);
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+}
+
 @media (min-width: 1200px) {
   body {
     background-image: url("../assets/fundo-da-brisa-desktop.jpg");
     padding: 20px;
   }
   .products {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
   .cardapio {
     min-width: 70%;
