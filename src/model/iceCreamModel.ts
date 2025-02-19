@@ -41,12 +41,6 @@ export const IceCreamModel = {
     newName: string,
     price: number
   ) => {
-    console.log("Valores recebidos no update:", {
-      id,
-      quantity,
-      newName,
-      price,
-    });
     const updated = await prismaClient.iceCreams.update({
       where: { id: id },
       data: {
@@ -56,6 +50,18 @@ export const IceCreamModel = {
       },
     });
     return updated;
+  },
+
+  updateStock: async (id: string, quantity: number) => {
+    
+    const updated = await prismaClient.iceCreams.update({
+      where: { id: id },
+      data: {
+        inStock: quantity,
+      },
+    });
+    return updated;
+    
   },
 
   delete: async (id: string) => {

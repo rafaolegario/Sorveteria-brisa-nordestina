@@ -21,6 +21,7 @@ exports.LoginController = {
             httpOnly: true,
             secure: process.env.NODE_ENV === "production",
             maxAge: 3600000,
+            path: "/"
         });
         res.redirect("/protected/admin");
     },

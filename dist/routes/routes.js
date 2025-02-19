@@ -21,3 +21,6 @@ router.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const products = yield IceCreamController_1.IceCreamController.getIceCreams(req, res);
     return res.render("cardapio", { products });
 }));
+router.patch("/stock/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    yield IceCreamController_1.IceCreamController.updateStock(req, res);
+}));

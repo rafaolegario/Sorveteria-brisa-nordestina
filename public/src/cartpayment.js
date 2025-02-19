@@ -1,3 +1,5 @@
+
+
 let products = [];
 
 const dialog = document.querySelector("#finishCart");
@@ -85,6 +87,7 @@ function buildCart() {
     removeBtn.addEventListener("click", () => {
       if (product.quantity > 1) {
         product.quantity--;
+       cartSpan.innerText = parseInt(cartSpan.innerText) - 1;
       } else {
         products = products.filter((p) => p.id !== product.id);
       }
@@ -118,7 +121,7 @@ closeBtn.forEach((btn) => {
   });
 });
 
-buyBtn.addEventListener("click", () => {
+buyBtn.addEventListener("click", async() => {
   if (products.length === 0) {
     alert("Adicione um produto ao carrinho");
     return;
@@ -164,13 +167,45 @@ buyBtn.addEventListener("click", () => {
   const message = encodeURIComponent(
     `🛍️ *Resumo do Pedido:* \n${cartItems}\n${informations}`
   );
-  const phone = "16991342553";
+  const phone = "16997045664";
 
   window.open(`https://wa.me/${phone}?text=${message}`, "_blank");
+
+  await updateStock();
+  window.location.reload();
+ 
 });
 
 function openModal() {
   delivery.style.display = "none";
   buildCart();
   dialog.showModal();
+}
+
+async function updateStock() {
+  
+  try {
+    await Promise.all(
+      products.map(async (product) => {
+        const newStock = product.stock - product.quantity;
+        const response = await fetch(`/Brisanordestina/stock/${product.id}`, {
+          method: "PATCH",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            inStock:newStock,
+          }),
+        });
+
+        if(!response.ok){
+          throw new Error("Erro ao atualizar estoque");
+        }
+      }))
+     
+    } catch (error) {
+      console.error("Erro ao atualizar estoque:", error);
+    }
+    
 }

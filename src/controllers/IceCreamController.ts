@@ -68,6 +68,21 @@ export const IceCreamController = {
     }
   },
 
+  updateStock: async (req: Request, res: Response) => {
+    try {
+      const id = req.params.id;
+      const { inStock } = req.body;
+      const Quantity = parseInt(inStock);
+      await IceCreamModel.updateStock(id, Quantity);
+      res.status(201).send();
+    }catch (error) {
+      res.status(500).json({
+        error: "Erro ao atualizar o estoque",
+        details: (error as Error).message,
+      });
+    }
+  },
+
   deleteIceCream: async (req: Request, res: Response) => {
     try {
       const id = req.params.id;

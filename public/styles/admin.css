@@ -55,7 +55,7 @@ body {
 }
 
 .cardapio {
-  min-width: 100%;
+  width: 100%;
   background-color: var(--cor-bege-claro);
   height: auto;
   padding: 8px 10px;
@@ -240,12 +240,26 @@ body {
   background-color: var(--cor-bege);
   display: flex;
   justify-content: space-around;
-  padding: 10px;
+  padding: 3px;
   border-radius: 5px;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 800px) {
+  .cardapio{
+    width: 80%;
+  }
+ 
+  .products {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .product {
+    justify-content: space-around;
+  }
+  
+}
+
+@media (min-width: 1600px) {
   body {
     background-image: url("../assets/fundo-da-brisa-desktop.jpg");
     padding: 20px;
@@ -254,8 +268,8 @@ body {
     grid-template-columns: repeat(3, 1fr);
   }
   .cardapio {
-    min-width: 70%;
-    padding: 20px;
+     width: 70%;
+     padding: 20px;
   }
 
   .product {

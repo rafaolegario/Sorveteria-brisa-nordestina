@@ -68,6 +68,21 @@ exports.IceCreamController = {
             });
         }
     }),
+    updateStock: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+        try {
+            const id = req.params.id;
+            const { inStock } = req.body;
+            const Quantity = parseInt(inStock);
+            yield iceCreamModel_1.IceCreamModel.updateStock(id, Quantity);
+            res.status(201).send();
+        }
+        catch (error) {
+            res.status(500).json({
+                error: "Erro ao atualizar o estoque",
+                details: error.message,
+            });
+        }
+    }),
     deleteIceCream: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         try {
             const id = req.params.id;

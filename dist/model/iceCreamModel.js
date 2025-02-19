@@ -38,17 +38,20 @@ exports.IceCreamModel = {
         return iceCream;
     }),
     update: (id, quantity, newName, price) => __awaiter(void 0, void 0, void 0, function* () {
-        console.log("Valores recebidos no update:", {
-            id,
-            quantity,
-            newName,
-            price,
-        });
         const updated = yield prisma_1.default.iceCreams.update({
             where: { id: id },
             data: {
                 name: newName,
                 price: price,
+                inStock: quantity,
+            },
+        });
+        return updated;
+    }),
+    updateStock: (id, quantity) => __awaiter(void 0, void 0, void 0, function* () {
+        const updated = yield prisma_1.default.iceCreams.update({
+            where: { id: id },
+            data: {
                 inStock: quantity,
             },
         });

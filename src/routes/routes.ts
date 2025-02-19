@@ -9,4 +9,8 @@ router.get("/", async (req, res) => {
   return res.render("cardapio", { products });
 });
 
+router.patch("/stock/:id", async (req, res) => {
+   await IceCreamController.updateStock(req, res);
+})
+
 export { router };
