@@ -59,6 +59,7 @@ cart.addEventListener("click", openModal);
 function buildCart() {
   const productsCart = document.querySelector(".cartProducts");
   productsCart.innerHTML = "";
+  cartSpan.innerText = products.reduce((acc, product) => acc + product.quantity, 0);
 
   products.forEach((product) => {
     const divProduct = document.createElement("div");
